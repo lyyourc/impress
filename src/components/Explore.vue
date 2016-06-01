@@ -1,5 +1,5 @@
 <template>
-<h1> This is Foo </h1>  
+<h1> This is Explore </h1>  
 </template>
 
 <script>
