@@ -6,6 +6,11 @@ import Home from './components/Home.vue'
 import Explore from './components/Explore.vue'
 import Login from './components/auth/Login.vue'
 
+import Setting from './components/setting/Setting.vue'
+import Photo from './components/setting/photo/Photo.vue'
+import Album from './components/setting/album/Album.vue'
+import Favourite from './components/setting/favourite/Favourite.vue'
+
 // middleware
 Vue.use(Router)
 
@@ -15,13 +20,19 @@ router.map({
   '/': {
     component: Home,
   },
-
   '/explore': {
     component: Explore,
   },
-
   '/login': {
     component: Login,
+  },
+  '/setting': {
+    component: Setting,
+    subRoutes: {
+      '/photo': { component: Photo },
+      '/album': { component: Album },
+      '/favourite': { component: Favourite },
+    },
   },
 })
 

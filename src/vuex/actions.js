@@ -6,7 +6,7 @@ export function doLogin ({
     password: user.password,
   })
 
-  fetch('//localhost:3000/api/login', {
+  fetch('/api/login', {
     method: 'POST',
     body: params,
     headers: {
@@ -19,4 +19,10 @@ export function doLogin ({
         dispatch('LOGIN', data)
       }
     })
+}
+
+export function selectSettingNavItem ({
+  dispatch,
+}, item) {
+  dispatch('SELECT_SETTING_NAV_ITEM', item)
 }

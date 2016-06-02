@@ -13,7 +13,7 @@
         Sign Up
       </li>
       <li v-link="{ path: '/setting' }" v-if="currentUser">
-        {{ currentUser }}
+        {{ currentUser.username }}
       </li>
     </div>
   </ul>

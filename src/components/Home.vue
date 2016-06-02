@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="home">
     <div class="banner">
       <img class="logo" src="../assets/logo.png">
       <h1> {{ title }} </h1>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
+.home {
   display: flex;
   flex-direction: column;
   align-items: center;
