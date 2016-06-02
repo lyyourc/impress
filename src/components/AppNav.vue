@@ -8,23 +8,25 @@
     
     <div class="nav-section">
       <li><input placeholder="Find Photos"></li>
-      <li v-link="{ path: '/login' }" v-if="!isLogged"> Log In </li>
-      <li v-link="{ path: '/signup' }" v-if="!isLogged" class="active">
+      <li v-link="{ path: '/login' }" v-if="!currentUser"> Log In </li>
+      <li v-link="{ path: '/signup' }" v-if="!currentUser" class="active">
         Sign Up
       </li>
-      <li v-link="{ path: '/setting' }" v-if="isLogged">Setting</li>
+      <li v-link="{ path: '/setting' }" v-if="currentUser">
+        {{ currentUser }}
+      </li>
     </div>
   </ul>
 </nav>
 </template>
 
 <script>
-import { isLogged } from '../vuex/getters'
+import { getCurrentUser } from '../vuex/getters'
 
 export default {
   vuex: {
     getters: {
-      isLogged,
+      currentUser: getCurrentUser,
     },
   },
 }

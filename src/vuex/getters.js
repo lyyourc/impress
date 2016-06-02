@@ -1,3 +1,3 @@
-export function isLogged (state) {
-  return state.isLogged
+export function getCurrentUser (state) {
+  return state.currentUser
 }

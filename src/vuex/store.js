@@ -5,12 +5,12 @@ import router from '../main'
 Vue.use(Vuex)
 
 const state = {
-  isLogged: false,
+  currentUser: '',
 }
 
 const mutations = {
-  LOGIN (state, action) {
-    state.isLogged = action
+  LOGIN (state, username) {
+    state.currentUser = username
     router.go('/')
   },
 }

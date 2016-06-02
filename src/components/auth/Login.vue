@@ -2,10 +2,10 @@
 <div class="login">
   <h3> Log In </h3>
   
-  <input type="email" placeholder="email">
-  <input type="passwrod" placeholder="password">
+  <input type="email" placeholder="email" v-model="user.username">
+  <input type="passwrod" placeholder="password" v-model="user.password">
   
-  <a class="button" @click="doLogin">
+  <a class="button" @click="doLogin(user)">
     Begin Tour
   </a>
 </div>
@@ -15,6 +15,15 @@
 import { doLogin } from '../../vuex/actions'
 
 export default {
+  data () {
+    return {
+      user: {
+        username: '',
+        password: '',
+      },
+    }
+  },
+
   vuex: {
     actions: {
       doLogin,
