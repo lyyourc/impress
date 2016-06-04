@@ -8,6 +8,8 @@ export function doLogin ({
 
   fetch('/api/login', {
     method: 'POST',
+    mode: 'cors',
+    credentials: 'include',
     body: params,
     headers: {
       'Content-Type': 'application/json',
@@ -21,8 +23,19 @@ export function doLogin ({
     })
 }
 
-export function selectSettingNavItem ({
+export function fetchPhotos ({
   dispatch,
-}, item) {
-  dispatch('SELECT_SETTING_NAV_ITEM', item)
+}) {
+  fetch('/api/photo', {
+    mode: 'cors',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then(({ success, data }) => {
+      if (!success) return
+      dispatch('GET_PHOTOS', data)
+    })
 }

@@ -21,5 +21,8 @@ export default {
 <style scoped>
 .app-setting {
   flex: 1;
+  
+  display: flex;
+  flex-direction: column;
 }
 </style>

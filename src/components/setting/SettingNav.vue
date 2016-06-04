@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import { getSelectedSettingNavItem } from '../../vuex/getters'
-
 export default {
   data () {
     return {
@@ -21,11 +19,6 @@ export default {
         { name: 'Favourite', route: '/favourite' },
       ],
     }
-  },
-  vuex: {
-    getters: {
-      selecedItem: getSelectedSettingNavItem,
-    },
   },
 }
 </script>
