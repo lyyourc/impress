@@ -1,5 +1,9 @@
 <template>
-<div class="setting-photo">
+<div class="setting-photo"
+  @dragenter="addPhoto"
+  @dragover="addPhoto"
+  @drop="addPhoto"
+>
   <h3 v-if="photos && photos.length === 0" class="msg">
     Drag and Drop to upload photos
   </h3>
@@ -14,7 +18,10 @@
 
 <script>
 import { getCurrentUser } from '../../../vuex/getters'
-import { fetchPhotos } from '../../../vuex/actions'
+import {
+  fetchPhotos,
+  addPhotoAction,
+ } from '../../../vuex/actions'
 
 export default {
   vuex: {
@@ -24,10 +31,21 @@ export default {
     },
     actions: {
       fetchPhotos,
+      addPhotoAction,
     },
   },
   created () {
     this.fetchPhotos()
+  },
+  methods: {
+    addPhoto (event) {
+      event.preventDefault()
+      if (event.type.toLowerCase() !== 'drop') return 0
+
+      this.addPhotoAction(event.dataTransfer.files[0])
+
+      return 0
+    },
   },
 }
 </script>

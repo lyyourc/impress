@@ -39,3 +39,21 @@ export function fetchPhotos ({
       dispatch('GET_PHOTOS', data)
     })
 }
+
+export function addPhotoAction ({
+  dispatch,
+}, photo) {
+  const formData = new FormData()
+  formData.append('photo', photo)
+
+  fetch('/api/photo', {
+    method: 'POST',
+    mode: 'cors',
+    body: formData,
+    credentials: 'include',
+  })
+    .then(res => res.json())
+    .then(json => {
+      dispatch('ADD_PHOTO', json.data)
+    })
+}
