@@ -5,3 +5,7 @@ export function getCurrentUser (state) {
 export function getPhotos (state) {
   return state.photo.photos
 }
+
+export function getSelectedPhotos (state) {
+  return state.photo.seletedPhotos
+}

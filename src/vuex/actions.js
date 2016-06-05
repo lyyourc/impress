@@ -57,3 +57,42 @@ export function addPhotoAction ({
       dispatch('ADD_PHOTO', json.data)
     })
 }
+
+export function selectPhotoAction ({
+  dispatch,
+}, photo) {
+  dispatch('SELECT_PHOTO', photo)
+}
+
+export function unSelectPhotoAction ({
+  dispatch,
+}, photoId) {
+  dispatch('UNSELECT_PHOTO', photoId)
+}
+
+export function unSelectAllPhotoAction ({
+  dispatch,
+}) {
+  dispatch('UNSELECT_ALL_PHOTO')
+}
+
+export const deletePhotosAction = ({
+  dispatch,
+}, photos) => {
+  const photoIds = photos.map(p => p.id)
+
+  fetch('/api/photo', {
+    method: 'DELETE',
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify({ photoIds }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then(({ success }) => {
+      if (!success) return
+      dispatch('DELETE_PHOTOS', photoIds)
+    })
+}

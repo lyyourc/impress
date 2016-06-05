@@ -9,29 +9,49 @@
   </h3>
   
   <div v-else class="card-group">
-    <div v-for="photo in photos" class="card">
+    <div class="card"
+      v-for="photo in photos"
+      @click="selectPhoto(photo)"
+    >
       <img :src="photo.url" >
-    <div>
+    </div>
   </div>
+  
+  <select-photo
+    v-if="selectedPhotos && selectedPhotos.length !== 0">
+  </select-photo>
 </div>
 </template>
 
 <script>
-import { getCurrentUser } from '../../../vuex/getters'
+import {
+  getCurrentUser,
+  getSelectedPhotos,
+} from '../../../vuex/getters'
+
 import {
   fetchPhotos,
   addPhotoAction,
+  selectPhotoAction,
  } from '../../../vuex/actions'
 
+import SelectPhoto from './SelectPhoto.vue'
+
 export default {
+  components: {
+    SelectPhoto,
+  },
+
   vuex: {
     getters: {
       user: getCurrentUser,
       photos: ({ photo }) => photo.photos,
+      selectedPhotos: getSelectedPhotos,
     },
     actions: {
       fetchPhotos,
       addPhotoAction,
+      selectPhotoAction,
     },
   },
   created () {
@@ -46,6 +66,9 @@ export default {
 
       return 0
     },
+    selectPhoto (photo) {
+      this.selectPhotoAction(photo)
+    },
   },
 }
 </script>
@@ -54,6 +77,7 @@ export default {
 .setting-photo {
   flex: 1;
   position: relative;
+  background: #f3f5f6;
 }
 
 .msg {
