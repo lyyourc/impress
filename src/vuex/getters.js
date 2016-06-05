@@ -9,3 +9,7 @@ export function getPhotos (state) {
 export function getSelectedPhotos (state) {
   return state.photo.seletedPhotos
 }
+
+export function getModal (state) {
+  return state.modal
+}

@@ -96,3 +96,35 @@ export const deletePhotosAction = ({
       dispatch('DELETE_PHOTOS', photoIds)
     })
 }
+
+export const editPhotoAction = (
+  { dispatch },
+  { modalType, modalProps }
+) => {
+  dispatch('SHOW_MODAL', { modalType, modalProps })
+}
+
+export const closeModalAction = (
+  { dispatch }
+) => {
+  dispatch('HIDE_MODAL')
+}
+
+export const savePhotoAction = (
+  { dispatch },
+  photo
+) => {
+  fetch('/api/photo', {
+    method: 'PUT',
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify({ photo }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then(json => {
+      if (json.success) dispatch('SAVE_PHOTO', photo)
+    })
+}

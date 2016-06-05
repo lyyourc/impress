@@ -22,7 +22,17 @@
   
   <footer>
     <div class="footer-section">
-      <div> Edit </div>
+      <div @click="editPhotoAction({
+        modalType: 'EDIT_PHOTO',
+        modalProps: {
+          photo: selectedPhotos[0],
+          savePhotoAction: savePhotoAction,
+        }
+      })"
+      >
+        Edit
+      </div>
+ 
       <div> Share </div>
       <div> Add to Album </div>
       <div> Download </div>
@@ -43,6 +53,8 @@ import {
   unSelectPhotoAction,
   unSelectAllPhotoAction,
   deletePhotosAction,
+  editPhotoAction,
+  savePhotoAction,
 } from '../../../vuex/actions'
 
 export default {
@@ -54,6 +66,8 @@ export default {
       unSelectPhotoAction,
       unSelectAllPhotoAction,
       deletePhotosAction,
+      editPhotoAction,
+      savePhotoAction,
     },
   },
 }
@@ -87,6 +101,7 @@ footer {
 .header-section > div,
 .footer-section > div {
   padding: .5rem 1rem;
+  cursor: pointer;
 }
 
 .header-section .close {

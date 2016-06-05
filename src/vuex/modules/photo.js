@@ -41,6 +41,18 @@ const mutations = {
 
     state.seletedPhotos = []
   },
+
+  SAVE_PHOTO (state, photo) {
+    const photoIndex = state.photos.findIndex(p => p.id === photo.id)
+
+    state.photos = [
+      ...state.photos.slice(0, photoIndex),
+      photo,
+      ...state.photos.slice(photoIndex + 1),
+    ]
+
+    console.log(state.photos)
+  },
 }
 
 export default {
