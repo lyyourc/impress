@@ -55,7 +55,7 @@ import {
   deletePhotosAction,
   editPhotoAction,
   savePhotoAction,
-} from '../../../vuex/actions'
+} from '../../../vuex/photo/photo.actions'
 
 export default {
   vuex: {

@@ -50,8 +50,6 @@ const mutations = {
       photo,
       ...state.photos.slice(photoIndex + 1),
     ]
-
-    console.log(state.photos)
   },
 }
 

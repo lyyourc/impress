@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import auth from './modules/auth'
-import photo from './modules/photo'
-import modal from './modules/modal'
+import auth from './auth/auth'
+import photo from './photo/photo'
+import modal from './modal/modal'
 
 Vue.use(Vuex)
 

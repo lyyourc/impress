@@ -8,12 +8,15 @@
     
     <div class="nav-section">
       <li><input placeholder="Find Photos"></li>
-      <li v-link="{ path: '/login' }" v-if="!currentUser"> Log In </li>
-      <li v-link="{ path: '/signup' }" v-if="!currentUser" class="active">
+      <li v-link="{ path: '/login' }" v-if="!auth.isAuthed"> Log In </li>
+      <li v-link="{ path: '/signup' }" v-if="!auth.isAuthed" class="active">
         Sign Up
       </li>
-      <li v-link="{ path: '/setting' }" v-if="currentUser">
-        {{ currentUser.username }}
+      <li v-link="{ path: '/setting' }" v-if="auth.isAuthed" class="active">
+        {{ auth.currentUser.username }}
+      </li>
+      <li v-if="auth.isAuthed" @click="logout">
+        Logout
       </li>
     </div>
   </ul>
@@ -21,12 +24,17 @@
 </template>
 
 <script>
-import { getCurrentUser } from '../vuex/getters'
+// import { getCurrentUser } from '../vuex/getters'
+import { logoutAction } from '../vuex/auth/auth.actions'
 
 export default {
   vuex: {
     getters: {
-      currentUser: getCurrentUser,
+      // currentUser: getCurrentUser,
+      auth: ({ auth }) => auth,
+    },
+    actions: {
+      logout: logoutAction,
     },
   },
 }

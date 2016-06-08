@@ -33,7 +33,7 @@ import {
   fetchPhotos,
   addPhotoAction,
   selectPhotoAction,
- } from '../../../vuex/actions'
+ } from '../../../vuex/photo/photo.actions'
 
 import SelectPhoto from './SelectPhoto.vue'
 

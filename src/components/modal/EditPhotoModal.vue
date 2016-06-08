@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { closeModalAction } from '../../vuex/actions'
+import { closeModalAction } from '../../vuex/modal/modal.actions'
 
 export default {
   props: ['photo', 'savePhotoAction'],

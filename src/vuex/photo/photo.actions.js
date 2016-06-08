@@ -1,28 +1,3 @@
-export function doLogin ({
-  dispatch,
-}, user) {
-  const params = JSON.stringify({
-    username: user.username,
-    password: user.password,
-  })
-
-  fetch('/api/login', {
-    method: 'POST',
-    mode: 'cors',
-    credentials: 'include',
-    body: params,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(res => res.json())
-    .then(({ success, data }) => {
-      if (success) {
-        dispatch('LOGIN', data)
-      }
-    })
-}
-
 export function fetchPhotos ({
   dispatch,
 }) {
@@ -81,20 +56,17 @@ export const deletePhotosAction = ({
 }, photos) => {
   const photoIds = photos.map(p => p.id)
 
-  fetch('/api/photo', {
+  fetch(`/api/photo/${photoIds}`, {
     method: 'DELETE',
     mode: 'cors',
     credentials: 'include',
-    body: JSON.stringify({ photoIds }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
   })
     .then(res => res.json())
     .then(({ success }) => {
       if (!success) return
       dispatch('DELETE_PHOTOS', photoIds)
     })
+    .catch(err => console.error('cannt delete photo', err))
 }
 
 export const editPhotoAction = (
@@ -104,21 +76,17 @@ export const editPhotoAction = (
   dispatch('SHOW_MODAL', { modalType, modalProps })
 }
 
-export const closeModalAction = (
-  { dispatch }
-) => {
-  dispatch('HIDE_MODAL')
-}
-
 export const savePhotoAction = (
   { dispatch },
   photo
 ) => {
-  fetch('/api/photo', {
+  const { id, name, description } = photo
+
+  fetch(`/api/photo/${id}`, {
     method: 'PUT',
     mode: 'cors',
     credentials: 'include',
-    body: JSON.stringify({ photo }),
+    body: JSON.stringify({ name, description }),
     headers: {
       'Content-Type': 'application/json',
     },
@@ -127,4 +95,5 @@ export const savePhotoAction = (
     .then(json => {
       if (json.success) dispatch('SAVE_PHOTO', photo)
     })
+    .catch(err => console.error('cant update photo', err))
 }

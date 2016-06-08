@@ -5,14 +5,14 @@
   <input type="email" placeholder="email" v-model="user.username">
   <input type="passwrod" placeholder="password" v-model="user.password">
   
-  <a class="button" @click="doLogin(user)">
+  <a class="button" @click="login(user)">
     Begin Tour
   </a>
 </div>
 </template>
 
 <script>
-import { doLogin } from '../../vuex/actions'
+import { loginAction } from '../../vuex/auth/auth.actions'
 
 export default {
   data () {
@@ -26,7 +26,7 @@ export default {
 
   vuex: {
     actions: {
-      doLogin,
+      login: loginAction,
     },
   },
 }
