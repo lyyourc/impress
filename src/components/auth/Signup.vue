@@ -1,16 +1,16 @@
 <template>
-<form class="login" @submit.prevent="login(user)">
-  <h3> Log In </h3>
-  
+<form class="signup" @submit.prevent="signup(user)">
+  <h3> Sign Up </h3>
+
   <input type="text" placeholder="username" v-model="user.username" autofocus>
   <input type="password" placeholder="password" v-model="user.password">
   
-  <input type="submit" class="button" value="Begin Tour">
+  <input type="submit" class="button" value="now">
 </form>
 </template>
 
 <script>
-import { loginAction } from '../../vuex/auth/auth.actions'
+import { signupAction } from '../../vuex/auth/auth.actions'
 
 export default {
   data () {
@@ -24,14 +24,14 @@ export default {
 
   vuex: {
     actions: {
-      login: loginAction,
+      signup: signupAction,
     },
   },
 }
 </script>
 
 <style scoped>
-.login {
+.signup {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +42,7 @@ export default {
   color: #86969C;
 }
 
-.login h3 {
+.signup h3 {
   font-size: 30px;
   font-weight: 700;
 }

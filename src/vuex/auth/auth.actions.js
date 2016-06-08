@@ -25,3 +25,24 @@ export function loginAction ({
       }
     })
 }
+
+export const signupAction = (
+  { dispatch },
+  user
+) => {
+  fetch('/api/auth/signup', {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'include',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then(({ success, data }) => {
+      if (success) {
+        dispatch('LOGIN', data)
+      }
+    })
+}

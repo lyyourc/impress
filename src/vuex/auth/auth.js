@@ -18,6 +18,13 @@ const mutations = {
 
     router.go('/')
   },
+
+  SIGNUP (state, user) {
+    state.currentUser = user
+    state.isAuthed = true
+
+    router.go('/setting')
+  },
 }
 
 export default {

@@ -5,6 +5,7 @@ import App from './App.vue'
 import Home from './components/Home.vue'
 import Explore from './components/Explore.vue'
 import Login from './components/auth/Login.vue'
+import Signup from './components/auth/Signup.vue'
 
 import Setting from './components/setting/Setting.vue'
 import Photo from './components/setting/photo/Photo.vue'
@@ -23,9 +24,10 @@ router.map({
   '/explore': {
     component: Explore,
   },
-  '/login': {
-    component: Login,
-  },
+
+  '/login': { component: Login },
+  '/signup': { component: Signup },
+
   '/setting': {
     component: Setting,
     subRoutes: {
