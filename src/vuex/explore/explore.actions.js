@@ -13,3 +13,27 @@ export const getExplorePhotosAction = (
       }
     })
 }
+
+export const likePhotoAction = (
+  { dispatch },
+  isAuthed,
+  photoId,
+  liked
+) => {
+  if (!isAuthed) {
+    dispatch('SHOW_MODAL', { modalType: 'SIGNUP_PROMPT' })
+    return
+  }
+
+  fetch(`/api/explore/like/${photoId}`, {
+    method: liked ? 'delete' : 'post',
+    mode: 'cors',
+    credentials: 'include',
+  })
+    .then(res => res.json())
+    .then(({ success }) => {
+      if (success) {
+        dispatch(liked ? 'DISLIKE_PHOTO' : 'LIKE_PHOTO', photoId)
+      }
+    })
+}

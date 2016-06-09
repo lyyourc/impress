@@ -16,6 +16,32 @@ const mutations = {
       }
     )
   },
+
+  LIKE_PHOTO (state, photoId) {
+    const { explorePhotos } = state
+    const index = explorePhotos.findIndex(p => p.id === photoId)
+    explorePhotos[index].likes += 1
+    explorePhotos[index].liked = true
+
+    state.explorePhotos = [
+      ...explorePhotos.slice(0, index),
+      explorePhotos[index],
+      ...explorePhotos.slice(index + 1),
+    ]
+  },
+
+  DISLIKE_PHOTO (state, photoId) {
+    const { explorePhotos } = state
+    const index = explorePhotos.findIndex(p => p.id === photoId)
+    explorePhotos[index].likes -= 1
+    explorePhotos[index].liked = false
+
+    state.explorePhotos = [
+      ...explorePhotos.slice(0, index),
+      explorePhotos[index],
+      ...explorePhotos.slice(index + 1),
+    ]
+  },
 }
 
 export default {
