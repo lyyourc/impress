@@ -30,17 +30,30 @@
         }
       })"
       >
-        Edit
+        <icon name="edit"></icon>
+        <span> Edit </span>
       </div>
  
-      <div> Share </div>
-      <div> Add to Album </div>
-      <div> Download </div>
+      <div>
+        <icon name="share"></icon>
+        <span> Share </span>
+      </div>
+
+      <div>
+        <icon name="plus-square-o"></icon>
+        <span> Add to Album </span>
+      </div>
+    
+      <div>
+        <icon name="download"></icon>
+        <span> Download </span>
+      </div>
     </div>
     
     <div class="footer-section">
       <div @click="deletePhotosAction(selectedPhotos)" class="delete-btn">
-        Delete
+        <icon name="trash"></icon>
+        <span> Delete </span>
       </div>
     </div>
   </footer>
@@ -48,6 +61,8 @@
 </template>
 
 <script>
+import Icon from 'vue-awesome/src/components/Icon.vue'
+
 import { getSelectedPhotos } from '../../../vuex/getters'
 import {
   unSelectPhotoAction,
@@ -69,6 +84,10 @@ export default {
       editPhotoAction,
       savePhotoAction,
     },
+  },
+
+  components: {
+    Icon,
   },
 }
 </script>
@@ -100,8 +119,15 @@ footer {
 
 .header-section > div,
 .footer-section > div {
-  padding: .5rem 1rem;
+  padding: .5rem 2rem;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+.fa-icon {
+  margin-right: .5rem;
 }
 
 .header-section .close {
